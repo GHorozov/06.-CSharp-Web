@@ -1,4 +1,4 @@
-﻿namespace _2.OneToManyRelation
+﻿namespace _02.OneToManyRelation
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

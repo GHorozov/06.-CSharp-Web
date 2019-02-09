@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RootNamespace>_2.OneToManyRelation</RootNamespace>
+    <RootNamespace>_02.OneToManyRelation</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
