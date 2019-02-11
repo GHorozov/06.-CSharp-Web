@@ -21,7 +21,7 @@
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer(@"Server=SNAKEDOC\MSSQLSERVER01;Database=StudentSystem;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.;Database=StudentSystem;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
