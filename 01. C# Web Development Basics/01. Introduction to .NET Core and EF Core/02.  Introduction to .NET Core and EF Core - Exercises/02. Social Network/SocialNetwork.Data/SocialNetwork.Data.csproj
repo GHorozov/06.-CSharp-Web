@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190212152634_AddTags.cs" />
+    <Compile Remove="Migrations\20190213121645_SharePhotoAlbumsAndUserRole.cs" />
+    <Compile Remove="Migrations\20190213122120_SharePhotoAlbumsAndUserRole.cs" />
+    <Compile Remove="Migrations\20190213134041_SharePhotoAlbumsAndUserRole.cs" />
+    <Compile Remove="Migrations\20190213135523_SharePhotoAlbumsAndUserRole.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlserver" Version="2.2.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SocialNetwork.Models\SocialNetwork.Models.csproj" />
+  </ItemGroup>
+
+</Project>
