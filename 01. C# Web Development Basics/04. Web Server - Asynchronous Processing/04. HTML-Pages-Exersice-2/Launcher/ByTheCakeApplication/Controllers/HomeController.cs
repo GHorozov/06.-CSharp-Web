@@ -7,12 +7,12 @@
     {
         public IHttpResponse Index()
         {
-            return this.FileViewResponse("index");
+            return this.FileViewResponse(@"home\index");
         }
 
         public IHttpResponse About()
         {
-            return this.FileViewResponse("about");
+            return this.FileViewResponse(@"home\about");
         }
     }
 }
