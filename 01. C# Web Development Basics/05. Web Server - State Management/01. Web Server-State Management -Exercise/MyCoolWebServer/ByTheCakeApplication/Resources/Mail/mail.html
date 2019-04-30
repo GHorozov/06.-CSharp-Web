@@ -1,0 +1,29 @@
+﻿<form method="post" style="display:{{{loginForm}}}">
+    Username:
+    <input type="text" name="name" placeholder="name" />
+    Password:
+    <input type="password" name="password" placeholder="password" />
+    <input type="submit" value="Log in" />
+</form>
+
+<div style="display:{{{displayError}}}">
+    <p style="color:red">
+        {{{error}}}
+    </p>
+</div>
+
+<form style="display:{{{mailForm}}}" method="post">
+    Hello, suAdmin!
+    <br />
+    <br />
+    To:
+    <input type="text" name="to" placeholder="email" />
+    <br />
+    Subject:
+    <input type="text" name="subject" placeholder="subject" />
+    <br />
+    Message:
+    <textarea rows="10" cols="50" name="message" placeholder="email text here"></textarea>
+    <br />
+    <input type="submit" value="Send" />
+</form>
