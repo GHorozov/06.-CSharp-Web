@@ -9,5 +9,7 @@
         bool Find(string username, string password);
 
         ProfileViewModel GetProfile(string username);
+
+        int? GetUserByUsername(string username);
     }
 }

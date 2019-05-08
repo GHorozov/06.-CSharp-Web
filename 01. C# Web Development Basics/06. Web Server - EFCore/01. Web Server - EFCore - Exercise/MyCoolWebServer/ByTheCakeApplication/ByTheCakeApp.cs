@@ -31,26 +31,6 @@
                 .Get("/about", req => new HomeController().About());
 
             appRouteConfig
-                .Get("/add", req => new ProductsController().Add());
-
-            appRouteConfig
-                .Post("/add", req => new ProductsController().Add(new AddProductViewModel()
-                {
-                    Name = req.FormData["name"],
-                    Price = decimal.Parse(req.FormData["price"]),
-                    ImageUrl = req.FormData["imageUrl"]
-                }));
-
-            appRouteConfig
-                .Get("/search", req => new ProductsController().Search(req));
-
-            appRouteConfig
-                 .Get("/calculator", req => new CalculatorContoller().Calculator());
-
-            appRouteConfig
-                .Post("/calculator", req => new CalculatorContoller().Calculator(req.FormData["firstValue"], req.FormData["sign"], req.FormData["secondValue"]));
-
-            appRouteConfig
                 .Get("/register", req => new AccountController().Register());
 
             appRouteConfig
@@ -78,29 +58,21 @@
                 .Post("/logout", req => new AccountController().Logout(req));
 
             appRouteConfig
-                .Get("/mail", req => new MailController().Mail());
+            .Get("/add", req => new ProductsController().Add());
 
             appRouteConfig
-                .Post("/mail", req => new MailController().Mail(req.FormData["name"], req.FormData["password"]));
+                .Post("/add", req => new ProductsController().Add(new AddProductViewModel()
+                {
+                    Name = req.FormData["name"],
+                    Price = decimal.Parse(req.FormData["price"]),
+                    ImageUrl = req.FormData["imageUrl"]
+                }));
 
             appRouteConfig
-                .Get("/mail/send", req => new MailController().SendMail());
+                .Get("/search", req => new ProductsController().Search(req));
 
             appRouteConfig
-                .Post("/mail/send", req => new MailController().SendMail(req.FormData["to"], req.FormData["subject"], req.FormData["message"]));
-
-            appRouteConfig
-                .Get("/greetings", req => new GreetingsController().GetPage());
-
-            appRouteConfig
-                .Post("/greetings", req => new GreetingsController().ShowGreetings(req.FormData["firstName"], req.FormData["lastName"], req.FormData["age"]));
-
-            appRouteConfig
-                .Get("/servey", req => new ServeyController().GetServey());
-
-            appRouteConfig
-                .Post("/servey", req => new ServeyController()
-                .SendServey(req.FormData["firstName"], req.FormData["lastName"], req.FormData["date"], req.FormData["gender"], req.FormData["status"], req.FormData["recomendations"], req.FormData["youown"], req.FormData["buttonClick"]));
+                .Get("/productDetails/{(?<id>[0-9]+)}", req => new ProductsController().Details(int.Parse(req.UrlParameters["id"])));
 
             appRouteConfig
                 .Get("/shopping/add/{(?<id>[0-9]+)}", req => new ShoppingController().AddToCart(req));
@@ -110,6 +82,12 @@
 
             appRouteConfig
                 .Post("/shopping/finish-order", req => new ShoppingController().FinishOrder(req));
+
+            appRouteConfig
+                .Get("/orders", req => new MyOrdersController().MyOrders(req));
+
+            appRouteConfig
+                .Get("/orderDetails/{(?<id>[0-9]+)}", req => new MyOrdersController().OrderDetails(int.Parse(req.UrlParameters["id"])));
         }
     }
 }

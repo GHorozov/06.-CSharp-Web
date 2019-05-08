@@ -2,43 +2,50 @@
 {
     using MyCoolWebServer.ByTheCakeApplication.Data;
     using MyCoolWebServer.ByTheCakeApplication.Infrastructure;
+    using MyCoolWebServer.ByTheCakeApplication.Services;
+    using MyCoolWebServer.ByTheCakeApplication.Services.Contracts;
     using MyCoolWebServer.ByTheCakeApplication.ViewModels;
+    using MyCoolWebServer.Server.Http;
     using MyCoolWebServer.Server.Http.Contracts;
     using MyCoolWebServer.Server.Http.Response;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
     public class ShoppingController : Controller
     {
-        private CakesData cakesData;
+        private IProductService productService;
+        private IUserService userService;
+        private IShoppingService shoppingService;
 
         public ShoppingController()
         {
-            this.cakesData = new CakesData();
+            this.productService = new ProductService();
+            this.userService = new UserService();
+            this.shoppingService = new ShoppingService();
         }
 
         public IHttpResponse AddToCart(IHttpRequest req)
         {
             var id = int.Parse(req.UrlParameters["id"]);
 
-            var cake = this.cakesData.Find(id);
-            if (cake == null)
+            var isExist = this.productService.Exists(id);
+            if (!isExist)
             {
                 return new NotFoundResponse();
             }
 
             var userShoppingCart = req.Session.Get<ShoppingCart>(ShoppingCart.SessionKey);
-            userShoppingCart.Orders.Add(cake);
+            userShoppingCart.ProductIds.Add(id);
 
             var redirectUrl = "/search";
-            const string searchTermKey = "name";
+            const string searchTermKey = "searchTerm";
 
             if (req.UrlParameters.ContainsKey(searchTermKey))
             {
                 redirectUrl = $"{redirectUrl}?{searchTermKey}={req.UrlParameters[searchTermKey]}";
             }
-
 
             return new RedirectResponse(redirectUrl);
         }
@@ -47,24 +54,26 @@
         {
             var totalCost = 0.00m;
 
-            var allCakes = req.Session.Get<ShoppingCart>(ShoppingCart.SessionKey).Orders;
-            if (allCakes.Any())
+            var shoppingCart = req.Session.Get<ShoppingCart>(ShoppingCart.SessionKey);
+            if (shoppingCart.ProductIds.Any())
             {
-                totalCost = allCakes.Sum(x => x.Price);
+                var productsInCart = this.productService.FindProductInCart(shoppingCart.ProductIds);
+
+                totalCost = productsInCart.Sum(x => x.Price);
 
                 var sb = new StringBuilder();
-                foreach (var cake in allCakes)
+                foreach (var product in productsInCart)
                 {
-                    sb.AppendLine($"<div>{cake.ToString()}</div>");
+                    sb.AppendLine($"<div>{product.Name} - ${product.Price:f2}</div>");
                 }
 
-                this.ViewData["cakes"] = sb.ToString();
+                this.ViewData["products"] = sb.ToString();
                 this.ViewData["totalCost"] = totalCost.ToString("f2");
 
                 return FileViewResponse(@"shopping\cart");
             }
 
-            this.ViewData["cakes"] = "No items in your cart.";
+            this.ViewData["products"] = "No items in your cart.";
             this.ViewData["totalCost"] = totalCost.ToString();
 
             return FileViewResponse(@"shopping\cart");
@@ -72,7 +81,23 @@
 
         public IHttpResponse FinishOrder(IHttpRequest req)
         {
-            req.Session.Get<ShoppingCart>(ShoppingCart.SessionKey).Orders.Clear();
+            var username = req.Session.Get<string>(SessionStore.CurrentUserKey);
+            var shoppingCart = req.Session.Get<ShoppingCart>(ShoppingCart.SessionKey);
+
+            var userId = this.userService.GetUserByUsername(username);
+            if(userId == null)
+            {
+                throw new InvalidOperationException($"User {username} does not exist!");
+            }
+
+            if (!shoppingCart.ProductIds.Any())
+            {
+                return new RedirectResponse("/");
+            }
+
+            this.shoppingService.CreateOrder(userId.Value, shoppingCart.ProductIds);
+
+            shoppingCart.ProductIds.Clear();
 
             return this.FileViewResponse(@"shopping\finish-order");
         }

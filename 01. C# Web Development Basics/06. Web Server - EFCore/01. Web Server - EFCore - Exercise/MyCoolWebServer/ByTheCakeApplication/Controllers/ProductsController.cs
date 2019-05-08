@@ -7,6 +7,7 @@
     using MyCoolWebServer.ByTheCakeApplication.ViewModels;
     using MyCoolWebServer.ByTheCakeApplication.ViewModels.Products;
     using MyCoolWebServer.Server.Http.Contracts;
+    using MyCoolWebServer.Server.Http.Response;
     using System;
     using System.Linq;
 
@@ -47,44 +48,66 @@
 
         public IHttpResponse Search(IHttpRequest req)
         {
-            const string searchNameKey = "name";
-            var results = string.Empty;
-            var searchName = "Search cakes...";
+            const string searchTermKey = "searchTerm";
+            var urlParameters = req.UrlParameters;
 
-            if (req.UrlParameters.ContainsKey(searchNameKey))
+            var searchTerm = urlParameters.ContainsKey(searchTermKey)
+               ? urlParameters[searchTermKey]
+               : null;
+
+            var resultProducts = this.productService.All(searchTerm);
+
+            if (!resultProducts.Any())
             {
-                searchName = req.UrlParameters[searchNameKey];
+                this.ViewData["results"] = "No cakes found";
+            }
+            else
+            {
+                var allProducts = resultProducts
+                    .Select(x => $@"<div><a href=""/productDetails/{x.Id}"">{x.Name}</a> ${x.Price} <a href=""/shopping/add/{x.Id}?name={searchTerm}"">Order</a></div>");
 
-                //var searchedCakesDivs = this.cakesData
-                //    .All()
-                //    .Where(x => x.Name.ToLower().Contains(searchName.ToLower()))
-                //    .Select(x => $@"<div>{x.Name} - ${x.Price} <a href=""/shopping/add/{x.Id}?name={searchName}"">Order</a></div>");
+                var allProductsString = string.Join(Environment.NewLine, allProducts);
 
-                //results = string.Join(Environment.NewLine, searchedCakesDivs);
+                this.ViewData["results"] = allProductsString;
             }
 
             var shoppingCart = req.Session.Get<ShoppingCart>(ShoppingCart.SessionKey);
-            if (shoppingCart.Orders.Any())
+            if (shoppingCart.ProductIds.Any())
             {
                 var productsCount = shoppingCart
-                    .Orders
+                    .ProductIds
                     .Count;
 
                 var productsText = productsCount != 1 ? " products" : " product";
 
                 this.ViewData["showCart"] = "block";
-                this.ViewData["products"] = $"{productsCount}{productsText}";
-                this.ViewData["results"] = results;
-                this.ViewData["searchName"] = searchName;
+                this.ViewData["cartProducts"] = $"{productsCount}{productsText}";
+                this.ViewData["searchTerm"] = searchTerm;
 
                 return this.FileViewResponse(@"products\search");
             }
+            else
+            {
+                this.ViewData["showCart"] = "none";
+                this.ViewData["searchTerm"] = searchTerm;
 
-            this.ViewData["showCart"] = "none";
-            this.ViewData["results"] = results;
-            this.ViewData["searchName"] = searchName;
+                return this.FileViewResponse(@"products\search");
+            }
+        }
 
-            return this.FileViewResponse(@"products\search");
+        public IHttpResponse Details(int id)
+        {
+            var product = this.productService.GetById(id);
+            if(product == null)
+            {
+                return new NotFoundResponse();
+            }
+
+            this.ViewData["productName"] = product.Name;
+            this.ViewData["productPrice"] = product.Price.ToString();
+            this.ViewData["imageUrl"] = product.ImageUrl;
+
+            return this.FileViewResponse(@"products\details");
         }
     }
 }

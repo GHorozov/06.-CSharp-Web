@@ -1,6 +1,6 @@
 ﻿namespace MyCoolWebServer.ByTheCakeApplication.ViewModels
 {
-    using MyCoolWebServer.ByTheCakeApplication.ViewModels.Products;
+    using MyCoolWebServer.ByTheCakeApplication.Data.Models;
     using System.Collections.Generic;
 
     public class ShoppingCart
@@ -9,9 +9,9 @@
 
         public ShoppingCart()
         {
-            this.Orders = new List<AddProductViewModel>();
+            this.ProductIds = new List<int>();
         }
 
-        public List<AddProductViewModel> Orders { get; set; }
+        public List<int> ProductIds { get; set; }
     }
 }
