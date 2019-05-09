@@ -14,8 +14,7 @@
         public DbSet<OrderProduct> OrdersProducts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //to remove my server name 
+        {          
             optionsBuilder.UseSqlServer(@"Server=.; Database=ByTheCakeDb;Integrated Security=True;");
         }
 
