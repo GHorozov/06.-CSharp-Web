@@ -2,6 +2,7 @@
 {
     using MyCoolWebServer.GameStoreApplication.Services;
     using MyCoolWebServer.GameStoreApplication.Services.Contracts;
+    using MyCoolWebServer.GameStoreApplication.ViewModels;
     using MyCoolWebServer.GameStoreApplication.ViewModels.Account;
     using MyCoolWebServer.Server.Http;
     using MyCoolWebServer.Server.Http.Contracts;
@@ -80,6 +81,7 @@
         private void LoginUser(string email)
         {
             this.Request.Session.Add(SessionStore.CurrentUserKey, email);
+            this.Request.Session.Add(ShoppingCart.SessionKey, new ShoppingCart());
         }
     }
 }

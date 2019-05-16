@@ -1,10 +1,11 @@
 ﻿namespace MyCoolWebServer.GameStoreApplication.Services.Contracts
 {
-    using MyCoolWebServer.GameStoreApplication.Data.Models;
-    using MyCoolWebServer.GameStoreApplication.ViewModels.Admin;
-    using MyCoolWebServer.GameStoreApplication.ViewModels.Home;
     using System;
     using System.Collections.Generic;
+    using MyCoolWebServer.GameStoreApplication.Data.Models;
+    using MyCoolWebServer.GameStoreApplication.ViewModels.Admin;
+    using MyCoolWebServer.GameStoreApplication.ViewModels.Cart;
+    using MyCoolWebServer.GameStoreApplication.ViewModels.Home;
 
     public interface IGameService
     {
@@ -21,5 +22,9 @@
         IEnumerable<HomeGameListViewModel> AllGamesList();
 
         IEnumerable<HomeGameListViewModel> AllGamesListByUserId(int id);
+
+        bool IsExist(int id);
+
+        ICollection<CartGameViewModel> FindGames(ICollection<int> gameIds);
     }
 }

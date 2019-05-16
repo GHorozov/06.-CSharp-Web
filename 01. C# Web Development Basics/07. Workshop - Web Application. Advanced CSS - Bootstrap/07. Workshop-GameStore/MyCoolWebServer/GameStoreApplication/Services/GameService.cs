@@ -7,6 +7,7 @@
     using MyCoolWebServer.GameStoreApplication.Data.Models;
     using MyCoolWebServer.GameStoreApplication.Services.Contracts;
     using MyCoolWebServer.GameStoreApplication.ViewModels.Admin;
+    using MyCoolWebServer.GameStoreApplication.ViewModels.Cart;
     using MyCoolWebServer.GameStoreApplication.ViewModels.Home;
 
     public class GameService : IGameService
@@ -110,7 +111,7 @@
                     .Games
                     .Select(x => new HomeGameListViewModel()
                     {
-                        Id= x.Id,
+                        Id = x.Id,
                         Title = x.Title,
                         Description = x.Description,
                         ImageUrl = x.ImageUrl,
@@ -132,6 +133,38 @@
                     .Where(x => x.UserId == id)
                     .Select(x => x.Game)
                     .Select(x => new HomeGameListViewModel()
+                    {
+                        Id = x.Id,
+                        Title = x.Title,
+                        Description = x.Description,
+                        ImageUrl = x.ImageUrl,
+                        Price = x.Price,
+                        Size = x.Size,
+                        VideoId = x.TrailerId,
+                        ReleaseDate = x.ReleaseDate
+                    })
+                    .ToList();
+            }
+        }
+
+        public bool IsExist(int id)
+        {
+            using (var db = new GameStoreDbContext())
+            {
+                return db
+                    .Games
+                    .Any(x => x.Id == id);
+            }
+        }
+
+        public ICollection<CartGameViewModel> FindGames(ICollection<int> gameIds)
+        {
+            using (var db = new GameStoreDbContext())
+            {
+                return db
+                    .Games
+                    .Where(x => gameIds.Contains(x.Id))
+                    .Select(x => new CartGameViewModel()
                     {
                         Id = x.Id,
                         Title = x.Title,

@@ -108,7 +108,23 @@
             appRouteConfig
                 .Get("/home/games/user/{(?<id>[0-9]+)}", req => new HomeController(req).OwnedGames(int.Parse(req.UrlParameters["id"])));
 
+            appRouteConfig
+                .Get("/game/details/{(?<id>[0-9]+)}", req => new GameController(req).Details(int.Parse(req.UrlParameters["id"])));
 
+            //-----------------------------------------------------------------------------------------
+            //Shoping
+
+            appRouteConfig
+                .Get("/cart/buy/{(?<id>[0-9]+)}", req => new ShoppingController(req).AddToCart(int.Parse(req.UrlParameters["id"])));
+
+            appRouteConfig
+                .Get("/cart/showCart", req => new ShoppingController(req).ShowCart());
+
+            appRouteConfig
+                .Get("/cart/delete/{(?<id>[0-9]+)}", req => new ShoppingController(req).CartDelete(int.Parse(req.UrlParameters["id"])));
+
+            appRouteConfig
+                .Post("/cart/finish-order", req => new ShoppingController(req).FinishOrder());
         }
     }
 }

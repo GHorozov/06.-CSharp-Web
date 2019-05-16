@@ -19,8 +19,9 @@
             {
                 ["anonymousDisplay"] = "none",
                 ["authDisplay"] = "flex",
-                ["showError"] = "none"
-            };
+                ["showError"] = "none",
+                ["showSucess"] = "none"
+        };
         }
 
         protected abstract string ApplicationDirectory { get; }
@@ -31,6 +32,12 @@
         {
             this.ViewData["showError"] = "block";
             this.ViewData["error"] = errorMessage;
+        }
+
+        protected void ShowSuccess(string successMessage)
+        {
+            this.ViewData["showSucess"] = "block";
+            this.ViewData["success"] = successMessage;
         }
 
         protected bool ValidateModel(object model)

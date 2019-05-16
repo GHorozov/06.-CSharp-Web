@@ -25,5 +25,6 @@
         public bool IsAdmin { get; set; }
 
         public List<UserGame> Games { get; set; } = new List<UserGame>();
+        public List<Order> Orders { get; set; } = new List<Order>();
     }
 }

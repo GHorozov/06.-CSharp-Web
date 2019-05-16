@@ -11,5 +11,7 @@
         bool IsAdmin(string email);
 
         int GetUserId(string email);
+
+        bool IsUserOwnGame(int userId, int gameId);
     }
 }

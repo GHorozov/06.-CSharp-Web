@@ -9,7 +9,11 @@
         
         public DbSet<Game> Games { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
         public DbSet<UserGame> UserGames { get; set; }
+
+        public DbSet<OrderGame> OrderGames { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -40,6 +44,28 @@
             modelBuilder
                 .Entity<Game>()
                 .HasMany(x => x.Users)
+                .WithOne(x => x.Game)
+                .HasForeignKey(x => x.GameId);
+
+            modelBuilder
+                .Entity<Order>()
+                .HasOne(x => x.User)
+                .WithMany(x => x.Orders)
+                .HasForeignKey(x => x.UserId);
+
+            modelBuilder
+                .Entity<OrderGame>()
+                .HasKey(x => new { x.OrderId, x.GameId });
+
+            modelBuilder
+                .Entity<Order>()
+                .HasMany(x => x.Games)
+                .WithOne(x => x.Order)
+                .HasForeignKey(x => x.OrderId);
+
+            modelBuilder
+                .Entity<Game>()
+                .HasMany(x => x.Orders)
                 .WithOne(x => x.Game)
                 .HasForeignKey(x => x.GameId);
         }

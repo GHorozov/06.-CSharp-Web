@@ -13,6 +13,7 @@
     {
         private const string HomeViewConst = @"home\index";
         private const string HomeUserViewConst = @"home\userHome";
+        
         private IGameService gameService;
         private IUserService userService;
 
@@ -42,11 +43,13 @@
 
                 if (this.Authentication.IsAdmin)
                 {
-                    isAdmin = "flex";
+                    isAdmin = "inline";
                 }
             }
             else
             {
+                this.ShowError("To see details or buy product you must login/register first!");
+
                 this.ViewData["isDisable"] = "disabled";
             }
 
@@ -79,8 +82,8 @@
                             <a style=""display: {isAdmin}"" class=""card-button btn btn-outline-warning"" name=""edit"" href=""/admin/games/edit/{currentGame.Id}"">Edit</a>
                             <a style=""display: {isAdmin}"" class=""card-button btn btn-outline-danger"" name=""delete"" href=""/admin/games/delete/{currentGame.Id}"">Delete</a>
 
-                            <a class=""card-button btn btn-outline-primary"" name=""info"" href=""/home/games/details/{currentGame.Id}"">Info</a>
-                            <a class=""card-button btn btn-primary"" name=""buy"" href=""/home/games/buy/{currentGame.Id}"">Buy</a>
+                            <a class=""card-button btn btn-outline-primary"" name=""info"" href=""/game/details/{currentGame.Id}"">Info</a>
+                            <a class=""card-button btn btn-primary"" name=""buy"" href=""/cart/buy/{currentGame.Id}"">Buy</a>
                         </div>");
 
                     sb.AppendLine("</div>");
@@ -106,7 +109,7 @@
 
                 if (this.Authentication.IsAdmin)
                 {
-                    isAdmin = "flex";
+                    isAdmin = "inline";
                 }
             }
 
@@ -147,8 +150,8 @@
                             <a style=""display: {isAdmin}"" class=""card-button btn btn-outline-warning"" name=""edit"" href=""/admin/games/edit/{currentGame.Id}"">Edit</a>
                             <a style=""display: {isAdmin}"" class=""card-button btn btn-outline-danger"" name=""delete"" href=""/admin/games/delete/{currentGame.Id}"">Delete</a>
 
-                            <a class=""card-button btn btn-outline-primary"" name=""info"" href=""/home/games/details/{userId}"">Info</a>
-                            <a class=""card-button btn btn-primary"" name=""buy"" href=""/home/games/buy/{userId}"">Buy</a>
+                            <a class=""card-button btn btn-outline-primary"" name=""info"" href=""/game/details/{currentGame.Id}"">Info</a>
+                            <a class=""card-button btn btn-primary"" name=""buy"" href=""/cart/buy/{currentGame.Id}"">Buy</a>
                         </div>");
 
                     sb.AppendLine("</div>");
@@ -161,6 +164,5 @@
 
             return this.FileViewResponse(HomeUserViewConst);
         }
-
     }
 }

@@ -33,5 +33,6 @@
         public DateTime ReleaseDate { get; set; }
 
         public List<UserGame> Users { get; set; } = new List<UserGame>();
+        public List<OrderGame> Orders { get; set; } = new List<OrderGame>();
     }
 }

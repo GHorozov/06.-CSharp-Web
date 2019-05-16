@@ -65,5 +65,18 @@
                     .FirstOrDefault();
             }
         }
+
+        public bool IsUserOwnGame(int userId, int gameId)
+        {
+            using (var db = new GameStoreDbContext())
+            {
+                return db
+                    .Users
+                    .Where(x => x.Id == userId)
+                    .Select(x => x.Games)
+                    .Select(ug => ug.Any(g => g.GameId == gameId))
+                    .First();
+            }
+        }
     }
 }
