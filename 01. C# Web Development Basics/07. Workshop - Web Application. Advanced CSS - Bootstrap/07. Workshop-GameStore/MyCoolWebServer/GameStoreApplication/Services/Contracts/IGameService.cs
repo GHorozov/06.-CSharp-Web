@@ -21,7 +21,7 @@
 
         IEnumerable<HomeGameListViewModel> AllGamesList();
 
-        IEnumerable<HomeGameListViewModel> AllGamesListByUserId(int id);
+        IEnumerable<HomeGameListViewModel> AllOwnedGamesListByUserId(int id);
 
         bool IsExist(int id);
 

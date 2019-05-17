@@ -12,7 +12,7 @@
     public class ShoppingController : BaseController
     {
         private const string CartViewConst = @"cart\cart";
-
+        private const string CartFinishViewConst = @"cart\finish-order";
         private IShoppingService shoppingService;
         private IGameService gameService;
         private IUserService userService;
@@ -46,8 +46,6 @@
             }
 
             shoppingCart.ProductIds.Add(id);
-
-            this.ShowSuccess("You succesfully buy product!");
 
             return new RedirectResponse("/");
         }
@@ -117,8 +115,20 @@
                 return new RedirectResponse("/");
             }
 
+            var email = this.Request.Session.Get<string>(SessionStore.CurrentUserKey);
+            var userId = this.userService.GetUserId(email);
+            var shoppingCart = this.Request.Session.Get<ShoppingCart>(ShoppingCart.SessionKey);
+            if (!shoppingCart.ProductIds.Any())
+            {
+                this.ShowError("You must add games to cart first");
 
-            return null;
+                return new RedirectResponse("/");
+            }
+
+            this.shoppingService.CreateOrder(userId, shoppingCart.ProductIds);
+            shoppingCart.ProductIds.Clear();
+
+            return this.FileViewResponse(CartFinishViewConst);
         }
     }
 }

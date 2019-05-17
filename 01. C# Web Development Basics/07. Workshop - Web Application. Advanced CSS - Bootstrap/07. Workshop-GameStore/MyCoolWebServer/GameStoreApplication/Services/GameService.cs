@@ -124,26 +124,45 @@
             }
         }
 
-        public IEnumerable<HomeGameListViewModel> AllGamesListByUserId(int id)
+        public IEnumerable<HomeGameListViewModel> AllOwnedGamesListByUserId(int id)
         {
             using (var db = new GameStoreDbContext())
             {
-                return db
-                    .UserGames
-                    .Where(x => x.UserId == id)
-                    .Select(x => x.Game)
-                    .Select(x => new HomeGameListViewModel()
+                var orderGames = db
+                   .Orders
+                   .Where(x => x.UserId == id)
+                   .Select(x => x.Games)
+                   .ToList();
+
+                var gamesList = new List<HomeGameListViewModel>();
+                foreach (var og in orderGames)
+                {
+                    var gameIds = og.Select(x => x.GameId);
+
+                    HomeGameListViewModel currentGame; 
+                    foreach (var gameId in gameIds)
                     {
-                        Id = x.Id,
-                        Title = x.Title,
-                        Description = x.Description,
-                        ImageUrl = x.ImageUrl,
-                        Price = x.Price,
-                        Size = x.Size,
-                        VideoId = x.TrailerId,
-                        ReleaseDate = x.ReleaseDate
-                    })
-                    .ToList();
+                         currentGame = db
+                        .Games
+                        .Where(x => x.Id == gameId)
+                        .Select(x => new HomeGameListViewModel()
+                        {
+                            Id = x.Id,
+                            Title = x.Title,
+                            Description = x.Description,
+                            ImageUrl = x.ImageUrl,
+                            Price = x.Price,
+                            Size = x.Size,
+                            VideoId = x.TrailerId,
+                            ReleaseDate = x.ReleaseDate
+                        })
+                        .First();
+
+                        gamesList.Add(currentGame);
+                    }
+                }
+
+                return gamesList;
             }
         }
 

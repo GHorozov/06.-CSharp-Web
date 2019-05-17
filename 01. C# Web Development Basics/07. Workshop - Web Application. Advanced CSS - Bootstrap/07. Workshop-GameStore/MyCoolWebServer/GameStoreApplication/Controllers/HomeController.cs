@@ -113,7 +113,7 @@
                 }
             }
 
-            var gamesById = this.gameService.AllGamesListByUserId(userId).ToList();
+            var gamesById = this.gameService.AllOwnedGamesListByUserId(userId).ToList();
             if(!gamesById.Any())
             {
                 this.ViewData["games"]= "You do not have any games.";
