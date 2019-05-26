@@ -13,7 +13,9 @@ namespace Demo.App
         {
             IServerRoutingTable serverRoutingTable = new ServerRoutingTable();
 
-            serverRoutingTable.Add(HttpRequestMethod.Get, "/", httpRequest 
+            //serverRoutingTable.Add(HttpRequestMethod.Get, "/", httprequest => new HtmlResult("<h1>Hello, world!</h1>", HttpResponseStatusCode.Ok));
+
+            serverRoutingTable.Add(HttpRequestMethod.Get, "/", httpRequest
                 => new HomeController().Home(httpRequest));
 
             Server server = new Server(8000, serverRoutingTable);

@@ -7,7 +7,7 @@ namespace Demo.App.Controllers
     {
         public IHttpResponse Home(IHttpRequest httpRequest)
         {
-            return this.View();
+            return this.View("Home");
         }
     }
 }

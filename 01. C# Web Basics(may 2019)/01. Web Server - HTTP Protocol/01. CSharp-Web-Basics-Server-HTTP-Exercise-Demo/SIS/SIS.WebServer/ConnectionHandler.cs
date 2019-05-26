@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using SIS.HTTP.Common;
 using SIS.HTTP.Enums;
 using SIS.HTTP.Exceptions;
@@ -27,7 +28,7 @@ namespace SIS.WebServer
             this.serverRoutingTable = serverRoutingTable;
         }
 
-        private IHttpRequest ReadRequest()
+        private async Task<IHttpRequest> ReadRequestAsync()
         {
             // PARSE REQUEST FROM BYTE DATA
             var result = new StringBuilder();
@@ -35,7 +36,7 @@ namespace SIS.WebServer
 
             while (true)
             {
-                int numberOfBytesToRead = this.client.Receive(data.Array, SocketFlags.None);
+                int numberOfBytesToRead = await this.client.ReceiveAsync(data.Array, SocketFlags.None);
 
                 if (numberOfBytesToRead == 0)
                 {
@@ -59,7 +60,7 @@ namespace SIS.WebServer
             return new HttpRequest(result.ToString());
         }
 
-        private IHttpResponse HandleRequest(IHttpRequest httpRequest)
+        private IHttpResponse HandleRequestAsync(IHttpRequest httpRequest)
         {
             // EXECUTE FUNCTION FOR CURRENT REQUEST -> RETURNS RESPONSE
             if (!this.serverRoutingTable.Contains(httpRequest.RequestMethod, httpRequest.Path))
@@ -73,24 +74,25 @@ namespace SIS.WebServer
         private void PrepareResponse(IHttpResponse httpResponse)
         {
             // PREPARES RESPONSE -> MAPS IT TO BYTE DATA
+
             byte[] byteSegments = httpResponse.GetBytes();
 
             this.client.Send(byteSegments, SocketFlags.None);
         }
 
-        public void ProcessRequest()
+        public async Task ProcessRequestAsync()
         {
             IHttpResponse httpResponse = null;
 
             try
             {
-                IHttpRequest httpRequest = this.ReadRequest();
+                IHttpRequest httpRequest = await this.ReadRequestAsync();
 
                 if (httpRequest != null)
                 {
                     Console.WriteLine($"Processing: {httpRequest.RequestMethod} {httpRequest.Path}...");
 
-                    httpResponse = this.HandleRequest(httpRequest);
+                    httpResponse = this.HandleRequestAsync(httpRequest);
                 }
             }
             catch (BadRequestException e)
