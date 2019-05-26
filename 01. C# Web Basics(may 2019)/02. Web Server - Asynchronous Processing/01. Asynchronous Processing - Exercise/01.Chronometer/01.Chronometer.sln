@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28917.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.Chronometer", "01.Chronometer\01.Chronometer.csproj", "{99BCF142-CC9A-4116-82DF-F0FAB339BEA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.Asyn", "02.Asyn\02.Asyn.csproj", "{45D3DDC5-F68D-4078-B050-BF1B418B66DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99BCF142-CC9A-4116-82DF-F0FAB339BEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99BCF142-CC9A-4116-82DF-F0FAB339BEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99BCF142-CC9A-4116-82DF-F0FAB339BEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99BCF142-CC9A-4116-82DF-F0FAB339BEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45D3DDC5-F68D-4078-B050-BF1B418B66DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45D3DDC5-F68D-4078-B050-BF1B418B66DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45D3DDC5-F68D-4078-B050-BF1B418B66DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45D3DDC5-F68D-4078-B050-BF1B418B66DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E38E1571-8B64-4A29-AD10-39849D42F67C}
+	EndGlobalSection
+EndGlobal

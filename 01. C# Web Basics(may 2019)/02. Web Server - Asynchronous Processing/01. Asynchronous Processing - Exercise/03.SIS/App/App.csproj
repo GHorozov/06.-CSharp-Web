@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\01. Web Server - HTTP Protocol\01. CSharp-Web-Basics-Server-HTTP-Exercise-Demo\SIS\SIS.HTTP\SIS.HTTP.csproj" />
+    <ProjectReference Include="..\..\..\..\01. Web Server - HTTP Protocol\01. CSharp-Web-Basics-Server-HTTP-Exercise-Demo\SIS\SIS.WebServer\SIS.WebServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Views\Home\Home.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
