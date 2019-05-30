@@ -16,6 +16,5 @@ namespace IRunes.Models
 
         public int AlbumId { get; set; }
         public Album Album { get; set; }
-
     }
 }

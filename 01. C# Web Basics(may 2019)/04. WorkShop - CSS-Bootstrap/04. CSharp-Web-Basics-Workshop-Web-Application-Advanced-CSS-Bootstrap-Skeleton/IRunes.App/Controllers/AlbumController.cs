@@ -98,7 +98,7 @@ namespace IRunes.App.Controllers
                 this.ViewData["album"] = albumFromDb.ToHtmlDetails();
             }
 
-            return this.View("Details");
+            return this.View();
         }
     }
 }

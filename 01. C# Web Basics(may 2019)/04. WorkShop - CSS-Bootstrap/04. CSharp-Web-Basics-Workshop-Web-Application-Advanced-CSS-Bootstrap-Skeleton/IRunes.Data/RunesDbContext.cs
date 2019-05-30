@@ -13,7 +13,7 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-1C83KEJ;Database=IRunes;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Server=.;Database=IRunes;Integrated Security=True");
 
             base.OnConfiguring(optionsBuilder);
         }
@@ -22,10 +22,9 @@
         {
             modelBuilder
                 .Entity<Album>()
-                .HasMany(x => x.Tracks);
-                //.WithOne(x => x.Album)
-                //.HasForeignKey(x => x.AlbumId);
-               
+                .HasMany(x => x.Tracks)
+                .WithOne(x => x.Album)
+                .HasForeignKey(x => x.AlbumId);
 
             base.OnModelCreating(modelBuilder);
         }

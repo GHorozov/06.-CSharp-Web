@@ -9,12 +9,16 @@ namespace IRunes.App.Extensions
     {
         public static string ToHtmlAll(this Album album)
         {
-            return $"<div><a href=\"/Albums/Details?id={album.Id}\">{album.Name}</a></div>";
+            return $@"<div>" +
+                "      <h3>" +
+                $"          <a href=\"/Albums/Details?id={album.Id}\">{album.Name}</a>" +
+                "      </h3>" +
+                "    </div>";
         }
 
         public static string ToHtmlAll(this Track track, string albumId, int index)
         {
-            return $"<li><strong>{index}</strong>. <a href=\"/Tracks/Details?albumId={albumId}&trackId={track.Id}\"><i>{WebUtility.UrlDecode(track.Name)}</i></a></li>";
+            return $"<h3><li><strong>{index}</strong>. <a href=\"/Tracks/Details?albumId={albumId}&trackId={track.Id}\"><i>{WebUtility.UrlDecode(track.Name)}</i></a></li></h3>";
         }
         private static string GetTracks(Album album)
         {
