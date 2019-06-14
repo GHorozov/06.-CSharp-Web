@@ -3,6 +3,6 @@
     public class DatabaseConfiguration
     {
         public const string ConnectionString =
-            @"Server=DESKTOP-1C83KEJ;Database=Panda;Trusted_Connection=True;Integrated Security=True;";
+            @"Server=.;Database=Panda;Trusted_Connection=True;Integrated Security=True;";
     }
 }
