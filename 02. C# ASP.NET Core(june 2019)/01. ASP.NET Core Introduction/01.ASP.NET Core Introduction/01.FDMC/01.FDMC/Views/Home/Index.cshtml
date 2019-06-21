@@ -1,8 +1,22 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Fluffy Duffy Munchkin Cats</h1>
+<br />
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="/cats/cat?id=@item.Id">@item.Name</a>
+        </li>
+    }
+</ul>
+
+<form method="get" action="/cats/add">
+    <input type="submit" value="Add Cat" />
+</form>
+
 

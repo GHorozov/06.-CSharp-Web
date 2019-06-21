@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace _01.FDMC
 {
@@ -27,7 +28,7 @@ namespace _01.FDMC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<FDMCDbContext>(options =>
-             options.UseSqlServer(this.Configuration["ConnectionString:DefaultConnection:"]));
+                 options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

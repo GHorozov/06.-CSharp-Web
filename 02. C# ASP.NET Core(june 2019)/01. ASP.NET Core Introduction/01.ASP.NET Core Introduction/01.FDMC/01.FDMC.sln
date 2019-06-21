@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.FDMC", "01.FDMC\01.FDMC.csproj", "{55173291-C104-4EF5-AC05-5279A3CE4F55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.FDMC", "01.FDMC\01.FDMC.csproj", "{55173291-C104-4EF5-AC05-5279A3CE4F55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FDMC.Data", "FDMC.Data\FDMC.Data.csproj", "{30FC74C4-9B8D-4E15-A45D-25E005F883AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FDMC.Data", "FDMC.Data\FDMC.Data.csproj", "{30FC74C4-9B8D-4E15-A45D-25E005F883AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FDMC.Models", "FDMC.Models\FDMC.Models.csproj", "{7A7C2253-8663-4F5E-96DD-63870574491E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{30FC74C4-9B8D-4E15-A45D-25E005F883AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30FC74C4-9B8D-4E15-A45D-25E005F883AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30FC74C4-9B8D-4E15-A45D-25E005F883AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A7C2253-8663-4F5E-96DD-63870574491E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A7C2253-8663-4F5E-96DD-63870574491E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A7C2253-8663-4F5E-96DD-63870574491E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A7C2253-8663-4F5E-96DD-63870574491E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

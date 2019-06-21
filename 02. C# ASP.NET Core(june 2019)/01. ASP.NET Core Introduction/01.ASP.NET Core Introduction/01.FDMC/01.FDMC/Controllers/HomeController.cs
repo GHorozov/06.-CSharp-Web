@@ -1,16 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using FDMC.Data;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace _01.FDMC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly FDMCDbContext context;
+
+        public HomeController(FDMCDbContext context)
+        {
+            this.context = context;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var cats = context
+                .Cats
+                .ToList();
+
+            return this.View(cats);
         }
     }
 }
