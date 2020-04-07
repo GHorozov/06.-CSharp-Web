@@ -5,21 +5,23 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog", "Blog.csproj", "{687D64D4-E29A-481F-99D2-8167469EDEFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Services", "..\Blog.Services\Blog.Services.csproj", "{42B611AF-1AFB-4B54-9EFA-8E34131A279F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Services", "..\Blog.Services\Blog.Services.csproj", "{42B611AF-1AFB-4B54-9EFA-8E34131A279F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Data", "..\Blog.Data\Blog.Data.csproj", "{AEDC246C-3FED-4B9A-ACE9-D195C4525211}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Data", "..\Blog.Data\Blog.Data.csproj", "{AEDC246C-3FED-4B9A-ACE9-D195C4525211}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blog.Models", "Blog.Models", "{9AD99813-02EB-4C34-A726-2D2A9AFA8C24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.InputModels", "..\Blog.InputModels\Blog.InputModels.csproj", "{856B04B1-A4CF-424E-B8A9-20FCCF94FC2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.InputModels", "..\Blog.InputModels\Blog.InputModels.csproj", "{856B04B1-A4CF-424E-B8A9-20FCCF94FC2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.ServiceModels", "..\Blog.ServiceModels\Blog.ServiceModels.csproj", "{BDC0D041-366D-4262-A913-3FAFB3847D6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.ServiceModels", "..\Blog.ServiceModels\Blog.ServiceModels.csproj", "{BDC0D041-366D-4262-A913-3FAFB3847D6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.DataModels", "..\Blog.DataModels\Blog.DataModels.csproj", "{B7CA135D-2547-42F2-BB6F-A27BF8A2E4B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.DataModels", "..\Blog.DataModels\Blog.DataModels.csproj", "{B7CA135D-2547-42F2-BB6F-A27BF8A2E4B3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blog.Common", "Blog.Common", "{76D232C3-3273-4162-8D60-AFDE2DFFD23C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Mapper", "..\Blog.Mapper\Blog.Mapper.csproj", "{40624802-9399-4139-B505-05748B57C640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Mapper", "..\Blog.Mapper\Blog.Mapper.csproj", "{40624802-9399-4139-B505-05748B57C640}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.ViewModels", "..\Blog.ViewModels\Blog.ViewModels.csproj", "{1B387627-E563-4792-BFAF-059F8E8BEAA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{40624802-9399-4139-B505-05748B57C640}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40624802-9399-4139-B505-05748B57C640}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40624802-9399-4139-B505-05748B57C640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B387627-E563-4792-BFAF-059F8E8BEAA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B387627-E563-4792-BFAF-059F8E8BEAA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B387627-E563-4792-BFAF-059F8E8BEAA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B387627-E563-4792-BFAF-059F8E8BEAA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{BDC0D041-366D-4262-A913-3FAFB3847D6E} = {9AD99813-02EB-4C34-A726-2D2A9AFA8C24}
 		{B7CA135D-2547-42F2-BB6F-A27BF8A2E4B3} = {9AD99813-02EB-4C34-A726-2D2A9AFA8C24}
 		{40624802-9399-4139-B505-05748B57C640} = {76D232C3-3273-4162-8D60-AFDE2DFFD23C}
+		{1B387627-E563-4792-BFAF-059F8E8BEAA5} = {9AD99813-02EB-4C34-A726-2D2A9AFA8C24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED1DA7FA-FF0F-47EC-BF17-B311E34B352B}
