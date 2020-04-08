@@ -19,7 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blog.DataModels\Forum.DataModels.csproj" />
+    <ProjectReference Include="..\Forum.Constants\Forum.Constants.csproj" />
+    <ProjectReference Include="..\Forum.DataModels\Forum.DataModels.csproj" />
   </ItemGroup>
 
 </Project>

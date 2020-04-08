@@ -1,10 +1,10 @@
-﻿namespace Blog.Controllers
+﻿namespace Forum.Controllers
 {
     using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
 
-    using Blog.ViewModels;
+    using Forum.ViewModels;
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

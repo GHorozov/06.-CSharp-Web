@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-Blog-7BD1E365-F257-438B-BB6E-8CB47CAC46B7</UserSecretsId>
+    <UserSecretsId>aspnet-Forum-7BD1E365-F257-438B-BB6E-8CB47CAC46B7</UserSecretsId>
   </PropertyGroup>
 
 
@@ -16,11 +16,12 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\Blog.DataModels\Forum.DataModels.csproj" />
-    <ProjectReference Include="..\Blog.Data\Forum.Data.csproj" />
-    <ProjectReference Include="..\Blog.Mapper\Forum.Mapper.csproj" />
-    <ProjectReference Include="..\Blog.Services\Forum.Services.csproj" />
-    <ProjectReference Include="..\Blog.ViewModels\Forum.ViewModels.csproj" />
+    <ProjectReference Include="..\Forum.DataModels\Forum.DataModels.csproj" />
+    <ProjectReference Include="..\Forum.Data\Forum.Data.csproj" />
+    <ProjectReference Include="..\Forum.InputModels\Forum.InputModels.csproj" />
+    <ProjectReference Include="..\Forum.Mapper\Forum.Mapper.csproj" />
+    <ProjectReference Include="..\Forum.Services\Forum.Services.csproj" />
+    <ProjectReference Include="..\Forum.ViewModels\Forum.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

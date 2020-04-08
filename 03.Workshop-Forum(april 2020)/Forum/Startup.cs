@@ -7,12 +7,14 @@ namespace Forum
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Forum.DataModels;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Forum.Mapper;
     using Forum.ViewModels;
     using System.Reflection;
+    using Forum.Data.Seeding;
 
     public class Startup
     {
@@ -32,6 +34,16 @@ namespace Forum
             services.AddIdentity<ForumUser, ForumRole>()
                 .AddEntityFrameworkStores<ForumDbContext>();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 6;
+                options.User.RequireUniqueEmail = true;
+            });
+
             services.Configure<CookiePolicyOptions>(
                 options =>
                 {
@@ -50,10 +62,22 @@ namespace Forum
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<ForumDbContext>();
+                if (env.IsDevelopment())
+                {
+                    dbContext.Database.Migrate();
+                    new ForumDbContextSeeder()
+                        .SeedAsync(dbContext, serviceScope.ServiceProvider)
+                        .GetAwaiter()
+                        .GetResult();
+                }
+            }
 
             if (env.IsDevelopment())
             {
