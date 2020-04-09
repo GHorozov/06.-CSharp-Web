@@ -5,18 +5,36 @@
     using Microsoft.Extensions.Logging;
 
     using Forum.ViewModels;
+    using Forum.Data;
+    using Forum.ViewModels.Home;
+    using System.Linq;
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ForumDbContext context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ForumDbContext context)
         {
             _logger = logger;
+            this.context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new IndexViewModel();
+            var categories = this.context.Categories.Select(x => new IndexCategoryViewModel()
+            {
+                Name = x.Name,
+                Title = x.Title,
+                Description = x.Description,
+                ImageUrl = x.ImageUrl
+            })
+            .ToList();
+
+            viewModel.Categories = categories;
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
