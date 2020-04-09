@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Forum.DataModels\Forum.DataModels.csproj" />
+    <ProjectReference Include="..\Forum.Data\Forum.Data.csproj" />
+    <ProjectReference Include="..\Forum.Mapper\Forum.Mapper.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -3,36 +3,27 @@
     using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-
     using Forum.ViewModels;
-    using Forum.Data;
     using Forum.ViewModels.Home;
-    using System.Linq;
+    using Forum.Services.Interfaces;
 
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly ForumDbContext context;
+        private readonly ICategoryService categoryService;
+        private readonly ILogger<HomeController> logger;
 
-        public HomeController(ILogger<HomeController> logger, ForumDbContext context)
+        public HomeController(ICategoryService categoryService, ILogger<HomeController> logger)
         {
-            _logger = logger;
-            this.context = context;
+            this.categoryService = categoryService;
+            this.logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int count)
         {
-            var viewModel = new IndexViewModel();
-            var categories = this.context.Categories.Select(x => new IndexCategoryViewModel()
+            var viewModel = new IndexViewModel()
             {
-                Name = x.Name,
-                Title = x.Title,
-                Description = x.Description,
-                ImageUrl = x.ImageUrl
-            })
-            .ToList();
-
-            viewModel.Categories = categories;
+                Categories = this.categoryService.All<IndexCategoryViewModel>(count)
+            };
 
             return View(viewModel);
         }

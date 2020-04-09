@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forum.Models", "Forum.Model
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.InputModels", "..\Forum.InputModels\Forum.InputModels.csproj", "{856B04B1-A4CF-424E-B8A9-20FCCF94FC2E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.ServiceModels", "..\Forum.ServiceModels\Forum.ServiceModels.csproj", "{BDC0D041-366D-4262-A913-3FAFB3847D6E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.DataModels", "..\Forum.DataModels\Forum.DataModels.csproj", "{B7CA135D-2547-42F2-BB6F-A27BF8A2E4B3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forum.Common", "Forum.Common", "{76D232C3-3273-4162-8D60-AFDE2DFFD23C}"
@@ -23,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Mapper", "..\Forum.Ma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.ViewModels", "..\Forum.ViewModels\Forum.ViewModels.csproj", "{1B387627-E563-4792-BFAF-059F8E8BEAA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum.Constants", "..\Forum.Constants\Forum.Constants.csproj", "{432500C6-1D8E-4B0C-A5DB-8978E93E1811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Constants", "..\Forum.Constants\Forum.Constants.csproj", "{432500C6-1D8E-4B0C-A5DB-8978E93E1811}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +45,6 @@ Global
 		{856B04B1-A4CF-424E-B8A9-20FCCF94FC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{856B04B1-A4CF-424E-B8A9-20FCCF94FC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{856B04B1-A4CF-424E-B8A9-20FCCF94FC2E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BDC0D041-366D-4262-A913-3FAFB3847D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDC0D041-366D-4262-A913-3FAFB3847D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDC0D041-366D-4262-A913-3FAFB3847D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDC0D041-366D-4262-A913-3FAFB3847D6E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7CA135D-2547-42F2-BB6F-A27BF8A2E4B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7CA135D-2547-42F2-BB6F-A27BF8A2E4B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7CA135D-2547-42F2-BB6F-A27BF8A2E4B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -73,7 +67,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{856B04B1-A4CF-424E-B8A9-20FCCF94FC2E} = {9AD99813-02EB-4C34-A726-2D2A9AFA8C24}
-		{BDC0D041-366D-4262-A913-3FAFB3847D6E} = {9AD99813-02EB-4C34-A726-2D2A9AFA8C24}
 		{B7CA135D-2547-42F2-BB6F-A27BF8A2E4B3} = {9AD99813-02EB-4C34-A726-2D2A9AFA8C24}
 		{40624802-9399-4139-B505-05748B57C640} = {76D232C3-3273-4162-8D60-AFDE2DFFD23C}
 		{1B387627-E563-4792-BFAF-059F8E8BEAA5} = {9AD99813-02EB-4C34-A726-2D2A9AFA8C24}

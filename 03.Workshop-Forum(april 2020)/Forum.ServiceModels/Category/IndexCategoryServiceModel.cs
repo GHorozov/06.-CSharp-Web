@@ -1,9 +1,9 @@
-﻿namespace Forum.ViewModels.Home
+﻿namespace Forum.ServiceModels.Category
 {
     using Forum.Mapper.Interfaces;
     using Forum.DataModels;
 
-    public class IndexCategoryViewModel : IMapFrom<Category>
+    public class IndexCategoryServiceModel : IMapFrom<Category>
     {
         public string Name { get; set; }
 
@@ -14,7 +14,5 @@
         public string ImageUrl { get; set; }
 
         public int PostsCount { get; set; }
-
-        public string Url => $"/f/{this.Name.Replace(' ', '-')}";
     }
 }

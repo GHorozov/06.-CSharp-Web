@@ -15,6 +15,8 @@ namespace Forum
     using Forum.ViewModels;
     using System.Reflection;
     using Forum.Data.Seeding;
+    using Forum.Services.Interfaces;
+    using Forum.Services;
 
     public class Startup
     {
@@ -59,7 +61,7 @@ namespace Forum
 
             services.AddRazorPages();
 
-
+            services.AddTransient<ICategoryService, CategoryService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

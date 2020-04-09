@@ -1,7 +1,9 @@
 ﻿namespace Forum.Services.Interfaces
 {
-    public class ICategoryService
-    {
+    using System.Collections.Generic;
 
+    public interface ICategoryService
+    {
+        IEnumerable<T> All<T>(int? count);
     }
 }
