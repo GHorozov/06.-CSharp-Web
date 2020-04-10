@@ -23,12 +23,23 @@
                 .Categories
                 .Where(x => !x.IsDeleted)
                 .OrderBy(x => x.Name);
-            if (count.HasValue)
+            if (count.HasValue) //&& count.Value > 0)
             {
                 query = query.Take(count.Value);
             }
 
             var result = query.To<T>().ToList(); 
+
+            return result;
+        }
+
+        public T GetByName<T>(string name)
+        {
+            var result = this.context
+                .Categories
+                .Where(x => !x.IsDeleted && x.Name == name)
+                .To<T>()
+                .FirstOrDefault();
 
             return result;
         }

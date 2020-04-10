@@ -60,7 +60,9 @@ namespace Forum
                 });
 
             services.AddRazorPages();
+            services.AddMvc();// to see
 
+            services.AddTransient<IEmailSenderService>(x => new EmailSenderService("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")); //Configuration.SendGrid("ApiKey")
             services.AddTransient<ICategoryService, CategoryService>();
         }
 
@@ -103,6 +105,7 @@ namespace Forum
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("ForumCategory", "f/{name}", new { controller = "Category", action = "GetByName" });
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });

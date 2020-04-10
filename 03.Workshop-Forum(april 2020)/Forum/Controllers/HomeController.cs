@@ -18,7 +18,7 @@
             this.logger = logger;
         }
 
-        public IActionResult Index(int count)
+        public IActionResult Index(int? count)
         {
             var viewModel = new IndexViewModel()
             {
