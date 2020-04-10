@@ -79,7 +79,7 @@
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
-                     CreatedOn = DateTime.UtcNow
+                    CreatedOn = DateTime.UtcNow
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

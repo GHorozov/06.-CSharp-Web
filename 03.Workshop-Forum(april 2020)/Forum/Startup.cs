@@ -34,7 +34,8 @@ namespace Forum
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ForumUser, ForumRole>()
-                .AddEntityFrameworkStores<ForumDbContext>();
+                .AddEntityFrameworkStores<ForumDbContext>()
+                .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {
