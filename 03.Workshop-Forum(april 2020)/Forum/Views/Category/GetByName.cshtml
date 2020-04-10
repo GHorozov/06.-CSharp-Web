@@ -1,0 +1,13 @@
+﻿@model CategoryViewModel;
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<h1 class="display-3">@ViewData["Title"]</h1>
+<div>
+    @Model.Description;
+</div>
+@foreach (var post in @Model.Posts)
+{
+   
+}
