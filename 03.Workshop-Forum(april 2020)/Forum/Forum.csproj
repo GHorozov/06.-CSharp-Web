@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-Forum-7BD1E365-F257-438B-BB6E-8CB47CAC46B7</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="stylecop.json" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
