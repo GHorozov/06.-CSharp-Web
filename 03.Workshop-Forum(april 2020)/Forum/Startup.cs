@@ -63,7 +63,7 @@ namespace Forum
             services.AddRazorPages();
             services.AddMvc();// to see
 
-            services.AddTransient<IEmailSenderService>(x => new EmailSenderService("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")); //Configuration.SendGrid("ApiKey")
+            services.AddTransient<IEmailSenderService>(x => new EmailSenderService("")); //Configuration.SendGrid("ApiKey")
             services.AddTransient<ICategoryService, CategoryService>();
         }
 
