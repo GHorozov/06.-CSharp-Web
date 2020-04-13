@@ -4,10 +4,26 @@
 }
 
 <h1 class="display-3">@ViewData["Title"]</h1>
-<div>
-    @Model.Description;
+<div class="alert alert-info" >
+    @Model.Description
 </div>
 @foreach (var post in @Model.Posts)
 {
-   
+    <div class="media-body">
+        <h4 class="media-heading">@post.Title</h4>
+        <p>@post.ShortContent</p>
+        <p class="">
+            <ul class="list-inline list-unstyled text-right">
+                <li class="list-inline-item">
+                    <i class="fas fa-user-edit"> @post.UserUserName</i>
+                </li>
+                <li class="list-inline-item">
+                    <i class="far fa-calendar-alt"> @post.CreatedOn</i>
+                </li>
+                <li class="list-inline-item">
+                    <i class="fas fa-comment-dots"> @post.CommentsCount comments</i>
+                </li>
+            </ul>
+        </p>
+    </div>
 }
