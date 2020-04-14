@@ -1,12 +1,12 @@
 ﻿namespace Forum.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Forum.Data;
     using Forum.DataModels;
     using Forum.Mapper;
     using Forum.Services.Interfaces;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public class CategoryService : ICategoryService
     {
@@ -23,12 +23,12 @@
                 .Categories
                 .Where(x => !x.IsDeleted)
                 .OrderBy(x => x.Name);
-            if (count.HasValue) //&& count.Value > 0)
+            if (count.HasValue)
             {
                 query = query.Take(count.Value);
             }
 
-            var result = query.To<T>().ToList(); 
+            var result = query.To<T>().ToList();
 
             return result;
         }

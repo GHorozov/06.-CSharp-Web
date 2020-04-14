@@ -1,11 +1,11 @@
 ﻿namespace Forum.Data.Seeding
 {
-    using Forum.Data.Seeding.Interfaces;
-    using Forum.DataModels;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Forum.Data.Seeding.Interfaces;
+    using Forum.DataModels;
 
     public class CategoriesSeeder : ISeeder
     {

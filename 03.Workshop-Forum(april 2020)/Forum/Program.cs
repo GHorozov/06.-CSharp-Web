@@ -1,4 +1,4 @@
-namespace Forum
+﻿namespace Forum
 {
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;

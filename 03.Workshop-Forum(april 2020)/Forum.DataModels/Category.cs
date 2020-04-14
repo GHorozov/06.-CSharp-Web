@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Forum.DataModels
+﻿namespace Forum.DataModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public class Category : BaseDeletableModel<string>
     {
         public Category()

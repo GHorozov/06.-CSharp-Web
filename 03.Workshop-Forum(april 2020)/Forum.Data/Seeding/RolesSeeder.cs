@@ -1,17 +1,17 @@
 ﻿namespace Forum.Data.Seeding
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Forum.Constants;
     using Forum.Data.Seeding.Interfaces;
     using Forum.DataModels;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class RolesSeeder : ISeeder
     {
-        public async  Task SeedAsync(ForumDbContext dbContext, IServiceProvider serviceProvider)
+        public async Task SeedAsync(ForumDbContext dbContext, IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<ForumRole>>();
 

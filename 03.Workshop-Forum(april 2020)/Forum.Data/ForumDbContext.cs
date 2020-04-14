@@ -7,12 +7,12 @@
     public class ForumDbContext : IdentityDbContext<ForumUser, ForumRole, string>
     {
         public ForumDbContext(DbContextOptions<ForumDbContext> options)
-            :base(options)
+            : base(options)
         {
         }
 
         public DbSet<Category> Categories { get; set; }
-        
+
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
@@ -21,7 +21,7 @@
         {
             base.OnModelCreating(builder);
 
-            //user
+            // user
             builder
                 .Entity<ForumUser>()
                 .HasMany(x => x.Roles)
@@ -45,8 +45,6 @@
               .HasForeignKey(x => x.UserId)
               .IsRequired()
               .OnDelete(DeleteBehavior.Restrict);
-           
-
         }
     }
 }

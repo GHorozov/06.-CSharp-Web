@@ -1,28 +1,29 @@
-namespace Forum
+﻿namespace Forum
 {
+    using System.Reflection;
+
+    using Forum.Data;
+    using Forum.Data.Seeding;
+    using Forum.DataModels;
+    using Forum.Mapper;
+    using Forum.Services;
+    using Forum.Services.Interfaces;
+    using Forum.ViewModels;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-    using Forum.Data;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Microsoft.AspNetCore.Identity;
-    using Forum.DataModels;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-    using Forum.Mapper;
-    using Forum.ViewModels;
-    using System.Reflection;
-    using Forum.Data.Seeding;
-    using Forum.Services.Interfaces;
-    using Forum.Services;
 
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -31,7 +32,7 @@ namespace Forum
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ForumDbContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ForumUser, ForumRole>()
                 .AddEntityFrameworkStores<ForumDbContext>()
@@ -55,15 +56,15 @@ namespace Forum
                 });
 
             services.AddControllersWithViews(
-                options => 
+                options =>
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 });
 
             services.AddRazorPages();
-            services.AddMvc();// to see
+            services.AddMvc(); // to see
 
-            services.AddTransient<IEmailSenderService>(x => new EmailSenderService("")); //Configuration.SendGrid("ApiKey")
+            services.AddTransient<IEmailSenderService>(x => new EmailSenderService(string.Empty));  // Configuration.SendGrid("ApiKey")
             services.AddTransient<ICategoryService, CategoryService>();
         }
 
@@ -94,6 +95,7 @@ namespace Forum
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

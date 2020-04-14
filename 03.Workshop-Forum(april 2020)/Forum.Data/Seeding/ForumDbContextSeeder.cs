@@ -1,11 +1,11 @@
 ﻿namespace Forum.Data.Seeding
 {
-    using Forum.Data.Seeding.Interfaces;
     using System;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Forum.Data.Seeding.Interfaces;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
 
     public class ForumDbContextSeeder : ISeeder
     {

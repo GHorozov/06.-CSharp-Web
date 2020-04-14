@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Data.Migrations
 {
     [DbContext(typeof(ForumDbContext))]
-    [Migration("20200408163301_addInitialModelsCategoryPostComment")]
-    partial class addInitialModelsCategoryPostComment
+    [Migration("20200408163301_AddInitialModelsCategoryPostComment")]
+    partial class AddInitialModelsCategoryPostComment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

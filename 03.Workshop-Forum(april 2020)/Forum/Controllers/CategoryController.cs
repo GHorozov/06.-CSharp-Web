@@ -1,12 +1,13 @@
 ﻿namespace Forum.Controllers
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
+
     using Forum.Services.Interfaces;
     using Forum.ViewModels.Category;
+    using Microsoft.AspNetCore.Mvc;
 
     public class CategoryController : Controller
     {

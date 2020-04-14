@@ -1,11 +1,12 @@
 ﻿namespace Forum.Controllers
 {
     using System.Diagnostics;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
+
+    using Forum.Services.Interfaces;
     using Forum.ViewModels;
     using Forum.ViewModels.Home;
-    using Forum.Services.Interfaces;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
 
     public class HomeController : Controller
     {
@@ -22,21 +23,21 @@
         {
             var viewModel = new IndexViewModel()
             {
-                Categories = this.categoryService.All<IndexCategoryViewModel>(count)
+                Categories = this.categoryService.All<IndexCategoryViewModel>(count),
             };
 
-            return View(viewModel);
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            return this.View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
     }
 }

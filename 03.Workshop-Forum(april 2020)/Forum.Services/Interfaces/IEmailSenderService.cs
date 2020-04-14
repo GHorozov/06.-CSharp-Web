@@ -1,8 +1,8 @@
 ﻿namespace Forum.Services.Interfaces
 {
-    using Forum.Services.EmailInfrastructure;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Forum.Services.EmailInfrastructure;
 
     public interface IEmailSenderService
     {

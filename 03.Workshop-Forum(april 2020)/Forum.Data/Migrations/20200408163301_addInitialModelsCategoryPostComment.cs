@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Forum.Data.Migrations
+﻿namespace Forum.Data.Migrations
 {
-    public partial class addInitialModelsCategoryPostComment : Migration
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
+    public partial class AddInitialModelsCategoryPostComment : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,7 @@ namespace Forum.Data.Migrations
                     Name = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    ImageUrl = table.Column<string>(nullable: true)
+                    ImageUrl = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -38,7 +38,7 @@ namespace Forum.Data.Migrations
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<string>(nullable: true)
+                    CategoryId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -68,7 +68,7 @@ namespace Forum.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     PostId = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {

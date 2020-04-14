@@ -1,7 +1,7 @@
 ﻿namespace Forum.DataModels.Interfaces
 {
     using System;
-    
+
     public interface IDeletableEntity
     {
         bool IsDeleted { get; set; }

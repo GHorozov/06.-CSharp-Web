@@ -1,16 +1,17 @@
 ﻿namespace Forum.Mapper
 {
-    using AutoMapper;
-    using AutoMapper.Configuration;
-    using Forum.Mapper.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using AutoMapper;
+    using AutoMapper.Configuration;
+    using Forum.Mapper.Interfaces;
 
     public static class AutoMapperConfig
     {
         private static bool initialized;
+
         public static IMapper MapperInstance { get; set; }
 
         public static void RegisterMappings(params Assembly[] assemblies)

@@ -1,7 +1,7 @@
 ﻿namespace Forum.ViewModels.Home
 {
-    using Forum.Mapper.Interfaces;
     using Forum.DataModels;
+    using Forum.Mapper.Interfaces;
 
     public class IndexCategoryViewModel : IMapFrom<Category>
     {
