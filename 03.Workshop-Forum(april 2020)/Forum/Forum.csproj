@@ -40,8 +40,8 @@
 
 
   <ItemGroup>
-    <Content Update="appsettings.Production.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
