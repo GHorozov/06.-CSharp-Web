@@ -21,9 +21,19 @@
 
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        // public Startup(IConfiguration configuration)
+        // {
+        //    this.Configuration = configuration;
+        // }
+        public Startup(IWebHostEnvironment env)
         {
-            this.Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+
+            this.Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -64,7 +74,7 @@
             services.AddRazorPages();
             services.AddMvc(); // to see
 
-            services.AddTransient<IEmailSenderService>(x => new EmailSenderService(string.Empty));  // Configuration.SendGrid("ApiKey")
+            services.AddTransient<IEmailSenderService>(x => new EmailSenderService(this.Configuration["SendGrid:ApiKey"]));
             services.AddTransient<ICategoryService, CategoryService>();
         }
 
