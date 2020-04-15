@@ -76,6 +76,7 @@
 
             services.AddTransient<IEmailSenderService>(x => new EmailSenderService(this.Configuration["SendGrid:ApiKey"]));
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IPostService, PostService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

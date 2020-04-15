@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Forum.Mapper\Forum.Mapper.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Post\" />
+  </ItemGroup>
+
 </Project>
