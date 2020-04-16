@@ -9,6 +9,7 @@
     using Forum.InputModels.Post;
     using Forum.Services.Interfaces;
     using Forum.ViewModels.Category;
+    using Forum.ViewModels.Post;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,13 @@
 
         public IActionResult GetPostById(string id)
         {
-            return this.View();
+            var viewModel = this.postService.ById<PostViewModel>(id);
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.View(viewModel);
         }
 
         public IActionResult Create()

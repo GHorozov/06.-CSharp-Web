@@ -10,7 +10,7 @@
 @foreach (var post in @Model.Posts)
 {
     <div class="media-body border border-success mb-1">
-        <h4 class="media-heading">@post.Title</h4>
+        <h4 class="media-heading"><a asp-controller="Post" asp-action="GetPostById" asp-route-id="@post.Id">@post.Title</a></h4>
         <p>@post.ShortContent</p>
         <p class="">
             <ul class="list-inline list-unstyled text-right">

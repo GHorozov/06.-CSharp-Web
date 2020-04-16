@@ -1,0 +1,48 @@
+﻿@model PostViewModel 
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+<div class="question-card card mb-4">
+    <!-- Card header -->
+    <div class="card-header forum-card-img-30 d-flex justify-content-between">
+        <p class="pt-2 mb-0">
+            <img src="https://secure.gravatar.com/avatar/62c9c125499e280d7f96a75e939f3046?s=96&amp;d=mm&amp;r=g" alt="" class="rounded-circle mr-2">
+            <strong><a href="https://mdbootstrap.com/profile/?id=35406" target="_blank">@Model.Title</a></strong>
+            created @Model.CreatedOn 
+        </p>
+        <div>
+            <a href="#" type="button" class="btn btn-outline-dark-green btn-sm px-2 waves-effect show_login">
+                <span class="value">1</span>
+                <i class="far fa-thumbs-up ml-1"></i>
+            </a>
+            <a href="#" type="button" class="btn btn-outline-danger btn-sm px-2 waves-effect show_login">
+                <span class="value">0</span>
+                <i class="far fa-thumbs-down ml-1"></i>
+            </a>
+        </div>
+    </div>
+    <!--Card content-->
+    <div class="card-body">
+        @Html.Raw(Model.SanitizedContent);
+        <hr>
+        <!-- Comments -->
+        <div class="comment-card ml-5">
+            <!-- Single comment -->
+            <div class="comment-item text-muted">
+                <p class="mb-2">
+                    <strong><a href="https://mdbootstrap.com/profile/?id=72880" target="_blank">myusername</a></strong>
+                    commented 8 months ago
+                </p>
+                <p>My test comment is here </p>
+            </div>
+            <hr>
+            <div class="form-group mb-0">
+                <a href="#" class="btn btn-info btn-sm ml-0 comment-form-toggle show_login waves-effect waves-light">Add comment</a>
+            </div>
+        </div>
+    </div>
+</div>

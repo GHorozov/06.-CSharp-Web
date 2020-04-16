@@ -30,7 +30,7 @@
 
     <div>
         <label asp-for="@Model.CategoryId"></label>
-        <select asp-for="@Model.CategoryId" asp-items="@Model.Categories.Select(x => new SelectListItem(x.Name, x.Id))"></select>
+        <select asp-for="@Model.CategoryId" asp-items="@Model.Categories.Select(x => new SelectListItem(x.Name, x.Id))" class="form-control"></select>
         <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
     </div>
     <hr />

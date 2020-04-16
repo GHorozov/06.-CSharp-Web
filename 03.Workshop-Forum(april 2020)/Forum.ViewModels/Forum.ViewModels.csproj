@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlSanitizer" Version="5.0.310" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -18,10 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Forum.DataModels\Forum.DataModels.csproj" />
     <ProjectReference Include="..\Forum.Mapper\Forum.Mapper.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Post\" />
   </ItemGroup>
 
 </Project>

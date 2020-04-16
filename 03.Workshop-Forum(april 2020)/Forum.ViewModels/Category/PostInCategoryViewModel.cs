@@ -1,6 +1,8 @@
 ﻿namespace Forum.ViewModels.Category
 {
     using System;
+    using System.Net;
+    using System.Text.RegularExpressions;
     using Forum.DataModels;
     using Forum.Mapper.Interfaces;
 
@@ -12,7 +14,14 @@
 
         public string Content { get; set; }
 
-        public string ShortContent => this.Content.Length > 150 ? this.Content?.Substring(0, 50) + "..." : this.Content;
+        public string ShortContent
+        {
+            get
+            {
+                var content = WebUtility.HtmlDecode(Regex.Replace(this.Content, @"<[^>]+>", string.Empty));
+                return content.Length > 200 ? content?.Substring(0, 200) + "..." : content;
+            }
+        }
 
         public string UserUserName { get; set; }
 
