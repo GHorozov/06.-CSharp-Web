@@ -12,13 +12,14 @@
         <p class="pt-2 mb-0">
             <img src="" alt="" class="rounded-circle mr-2">
             <strong>@Model.UserUserName</strong>
-            created @Model.CreatedOn 
+            created @Model.CreatedOn
         </p>
         <div>
             <a href="#" type="button" class="btn btn-outline-dark-green btn-sm px-2 waves-effect show_login">
                 <span class="value">1</span>
                 <i class="far fa-thumbs-up ml-1"></i>
             </a>
+            <div>@Model.VotesCount</div>
             <a href="#" type="button" class="btn btn-outline-danger btn-sm px-2 waves-effect show_login">
                 <span class="value">0</span>
                 <i class="far fa-thumbs-down ml-1"></i>

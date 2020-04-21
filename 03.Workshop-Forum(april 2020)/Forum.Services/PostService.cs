@@ -46,5 +46,16 @@
 
             return post.Id;
         }
+
+        public bool IsExist(string postId)
+        {
+            var post = this.context
+                .Posts
+                .FirstOrDefault(x => x.Id == postId);
+
+            var result = post != null ? true : false;
+
+            return result;
+        }
     }
 }

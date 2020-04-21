@@ -11,5 +11,7 @@
         Task<string> Create(string title, string content, string categoryId, string userId);
 
         T ById<T>(string id);
+
+        bool IsExist(string postId);
     }
 }
