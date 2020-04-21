@@ -10,8 +10,8 @@
     <!-- Card header -->
     <div class="card-header forum-card-img-30 d-flex justify-content-between">
         <p class="pt-2 mb-0">
-            <img src="https://secure.gravatar.com/avatar/62c9c125499e280d7f96a75e939f3046?s=96&amp;d=mm&amp;r=g" alt="" class="rounded-circle mr-2">
-            <strong><a href="https://mdbootstrap.com/profile/?id=35406" target="_blank">@Model.Title</a></strong>
+            <img src="" alt="" class="rounded-circle mr-2">
+            <strong>@Model.UserUserName</strong>
             created @Model.CreatedOn 
         </p>
         <div>
@@ -27,7 +27,7 @@
     </div>
     <!--Card content-->
     <div class="card-body">
-        @Html.Raw(Model.SanitizedContent);
+        @Html.Raw(Model.SanitizedContent)
         <hr>
         <!-- Comments -->
         <div class="comment-card ml-5">

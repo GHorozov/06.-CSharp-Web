@@ -16,5 +16,7 @@
         public string UserUserName { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        // TO DO: add user profile pisture Url
     }
 }
