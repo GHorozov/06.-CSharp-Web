@@ -33,12 +33,12 @@
         public async Task<ActionResult<VoteViewModel>> VoteAsync(VoteInputModel inputModel)
         {
             var isPostIdExist = this.postService.IsExist(inputModel.PostId);
-            if (!isPostIdExist)
+            if (isPostIdExist == false)
             {
                 return this.NotFound(inputModel.PostId);
             }
 
-            var user = this.userManager.GetUserAsync(this.User);
+            var user = await this.userManager.GetUserAsync(this.User);
             await this.voteService.VoteAsync(inputModel.PostId, user.Id.ToString(), inputModel.IsUpVote);
             var votes = this.voteService.GetVotesCount(inputModel.PostId);
 

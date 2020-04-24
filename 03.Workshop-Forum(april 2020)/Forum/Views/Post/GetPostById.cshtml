@@ -1,7 +1,7 @@
 ﻿@model PostViewModel 
 
 @{
-    ViewData["Title"] = @Model.Title;
+    ViewData["Title"] = @Model.Title; 
 }
 
 <h1>@this.ViewData["Title"]</h1>
@@ -15,12 +15,12 @@
             created @Model.CreatedOn
         </p>
         <div>
-            <a href="#" type="button" class="btn btn-outline-dark-green btn-sm px-2 waves-effect show_login">
-                <span class="value">1</span>
+            <a href="#" onclick="makeVote('@Model.Id', true)" type="button" class="btn btn-outline-dark-green btn-sm px-2 waves-effect show_login">
+                <span class="value">0</span>
                 <i class="far fa-thumbs-up ml-1"></i>
             </a>
             <div>@Model.VotesCount</div>
-            <a href="#" type="button" class="btn btn-outline-danger btn-sm px-2 waves-effect show_login">
+            <a href="#" onclick="makeVote('@Model.Id', false)" type="button" class="btn btn-outline-danger btn-sm px-2 waves-effect show_login">
                 <span class="value">0</span>
                 <i class="far fa-thumbs-down ml-1"></i>
             </a>
@@ -47,3 +47,22 @@
         </div>
     </div>
 </div>
+
+@section Scripts{ 
+    <script>
+        function makeVote(postId, isUpVote) {
+            var data = { postId: postId, isUpVote: isUpVote };
+            console.log(data);
+            $.ajax({
+                url: "/api/vote",
+                type: "POST",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+                    console.log("success")
+                }
+            })
+        }
+    </script>
+}
