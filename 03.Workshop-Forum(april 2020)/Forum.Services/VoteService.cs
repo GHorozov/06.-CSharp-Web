@@ -38,6 +38,7 @@
             if (vote != null)
             {
                 vote.Type = isUpVote ? VoteType.Up : VoteType.Down;
+                vote.ModifiedOn = DateTime.UtcNow;
             }
             else
             {

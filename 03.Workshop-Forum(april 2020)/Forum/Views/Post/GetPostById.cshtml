@@ -10,18 +10,18 @@
     <!-- Card header -->
     <div class="card-header forum-card-img-30 d-flex justify-content-between">
         <p class="pt-2 mb-0">
-            <img src="" alt="" class="rounded-circle mr-2">
+            <img src="" alt="profilePicture" class="rounded-circle mr-2">
             <strong>@Model.UserUserName</strong>
             created @Model.CreatedOn
         </p>
         <div>
+            <form id="voteForm" method="post"></form>
             <a href="#" onclick="makeVote('@Model.Id', true)" type="button" class="btn btn-outline-dark-green btn-sm px-2 waves-effect show_login">
-                <span class="value">0</span>
                 <i class="far fa-thumbs-up ml-1"></i>
             </a>
-            <div>@Model.VotesCount</div>
+            <span id="voteCount">@Model.VotesCount</span>
             <a href="#" onclick="makeVote('@Model.Id', false)" type="button" class="btn btn-outline-danger btn-sm px-2 waves-effect show_login">
-                <span class="value">0</span>
+
                 <i class="far fa-thumbs-down ml-1"></i>
             </a>
         </div>
@@ -52,15 +52,16 @@
     <script>
         function makeVote(postId, isUpVote) {
             var data = { postId: postId, isUpVote: isUpVote };
-            console.log(data);
+            var token = $("#voteForm input[name=__RequestVerificationToken]").val()
             $.ajax({
                 url: "/api/vote",
                 type: "POST",
                 data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function () {
-                    console.log("success")
+                headers: { 'X-CSRF-TOKEN': token },
+                success: function (res) {
+                    $("#voteCount").html(res.votesCount)
                 }
             })
         }
