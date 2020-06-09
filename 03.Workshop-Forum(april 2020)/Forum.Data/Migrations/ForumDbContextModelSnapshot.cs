@@ -73,6 +73,9 @@ namespace Forum.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ParentCommentId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("PostId")
                         .HasColumnType("nvarchar(450)");
 
@@ -80,6 +83,8 @@ namespace Forum.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ParentCommentId");
 
                     b.HasIndex("PostId");
 
@@ -379,6 +384,10 @@ namespace Forum.Data.Migrations
 
             modelBuilder.Entity("Forum.DataModels.Comment", b =>
                 {
+                    b.HasOne("Forum.DataModels.Comment", "ParentComment")
+                        .WithMany()
+                        .HasForeignKey("ParentCommentId");
+
                     b.HasOne("Forum.DataModels.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId");
