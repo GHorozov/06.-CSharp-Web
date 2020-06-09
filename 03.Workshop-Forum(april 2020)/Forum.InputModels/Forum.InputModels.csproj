@@ -16,6 +16,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Forum.DataModels\Forum.DataModels.csproj" />
     <ProjectReference Include="..\Forum.ViewModels\Forum.ViewModels.csproj" />
   </ItemGroup>
 
