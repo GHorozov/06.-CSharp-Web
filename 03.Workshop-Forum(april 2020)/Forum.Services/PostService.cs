@@ -57,5 +57,32 @@
 
             return result;
         }
+
+        public IEnumerable<T> GetByCategoryId<T>(string categoryId, int? take = null, int skip = 0)
+        {
+            var query = this.context
+                .Posts
+                .OrderByDescending(x => x.CreatedOn)
+                .Where(x => !x.IsDeleted && x.CategoryId == categoryId)
+                .Skip(skip);
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            var result = query.To<T>().ToList();
+
+            return result;
+        }
+
+        public int GetCountByCategoryId(string categoryId)
+        {
+            var result = this.context
+                .Posts
+                .Where(x => !x.IsDeleted && x.CategoryId == categoryId)
+                .Count();
+
+            return result;
+        }
     }
 }

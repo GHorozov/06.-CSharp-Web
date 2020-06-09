@@ -33,7 +33,7 @@
             return result;
         }
 
-        public T GetByName<T>(string name)
+        public T GetByName<T>(string name, int? take = null, int skip = 0)
         {
             var result = this.context
                 .Categories

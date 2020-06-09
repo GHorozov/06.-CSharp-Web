@@ -7,6 +7,6 @@
     {
         IEnumerable<T> All<T>(int? count);
 
-        T GetByName<T>(string name);
+        T GetByName<T>(string name, int? take = null, int skip = 0);
     }
 }

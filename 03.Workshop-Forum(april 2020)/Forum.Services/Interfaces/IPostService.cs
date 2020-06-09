@@ -13,5 +13,9 @@
         T ById<T>(string id);
 
         bool IsExist(string postId);
+
+        IEnumerable<T> GetByCategoryId<T>(string categoryId, int? take = null, int skip = 0);
+
+        int GetCountByCategoryId(string categoryId);
     }
 }
