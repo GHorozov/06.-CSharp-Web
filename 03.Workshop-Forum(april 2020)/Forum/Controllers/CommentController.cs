@@ -27,7 +27,7 @@
         public async Task<IActionResult> Create(CreateCommentInputModel inputModel)
         {
             var user = await this.userManager.GetUserAsync(this.User);
-            await this.commentService.Create(user.Id, inputModel.PostId, inputModel.Content);
+            await this.commentService.Create(user.Id, inputModel.PostId, inputModel.Content, inputModel.ParentId);
 
             return this.RedirectToAction("GetPostById", "Post", new { id = inputModel.PostId });
         }
