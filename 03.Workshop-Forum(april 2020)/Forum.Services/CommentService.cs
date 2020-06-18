@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using Forum.Data;
@@ -30,6 +31,19 @@
 
             await this.context.Comments.AddAsync(comment);
             await this.context.SaveChangesAsync();
+        }
+
+        public bool IsInPostId(string commentId, string postId)
+        {
+            var commentPostId = this.context
+                .Comments
+                .Where(x => !x.IsDeleted && x.Id == commentId)
+                .Select(x => x.PostId)
+                .FirstOrDefault();
+
+            var result = commentPostId == postId;
+
+            return result;
         }
     }
 }
