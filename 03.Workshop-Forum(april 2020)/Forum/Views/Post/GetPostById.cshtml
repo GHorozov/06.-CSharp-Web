@@ -12,7 +12,7 @@
         <p class="pt-2 mb-0">
             <img src="" alt="profilePicture" class="rounded-circle mr-2">
             <strong>@Model.UserUserName</strong>
-            created @Model.CreatedOn
+            <time datetime="@Model.CreatedOn.ToString("O")"></time>
         </p>
         <div>
             <form id="voteForm" method="post"></form>
@@ -36,7 +36,7 @@
     <button type="button" class="btn btn-primary" onclick="showCommentForm()">Comment</button>
 </div>
 <div class="clearfix"></div>
-<hr />
+<br />
 
 <script src="~/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -63,20 +63,22 @@
 @foreach (var item in Model.Comments)
 {
     <!-- Comments -->
-    <hr />
     <div class="comment-card ml-5">
         <div class="comment-item text-muted">
             <p class="mb-2">
                 <strong>
                     <a href="https://mdbootstrap.com/profile/?id=72880" target="_blank">@item.UserUserName</a>
                 </strong>
-                commented on @item.CreatedOn
+                <time datetime="@item.CreatedOn.ToString("O")"></time>
             </p>
-            <p>@Html.Raw(item.SanitizedContent)</p>
+            <p>
+                @Html.Raw(item.SanitizedContent)
+                <div>
+                    <button class="btn btn-info btn-sm float-lg-right" onclick="showCommentForm('@item.Id')">Reply</button>
+                    <br />
+                </div>
+            </p>
         </div>
-    </div>
-    <div class="form-group mb-0">
-        <button class="btn btn-info btn-sm ml-0 comment-form-toggle show_login waves-effect waves-light float-lg-right" onclick="showCommentForm('@item.Id')">Reply</button>
     </div>
 }
 
