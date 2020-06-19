@@ -2,6 +2,39 @@
 
 @{
     ViewData["Title"] = @Model.Title;
+
+    void DisplayComments(string parentId)
+    {
+        var comments = this.Model.Comments.Where(x => x.ParentCommentId == parentId);
+        if (!comments.Any())
+        {
+            return;
+        }
+
+        @foreach (var item in comments)
+        {
+            <!-- Comments -->
+            <div class="comment-card ml-5 shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="comment-item text-muted">
+                    <p class="mb-2">
+                        <strong>
+                            <a href="https://mdbootstrap.com/profile/?id=72880" target="_blank">@item.UserUserName</a>
+                        </strong>
+                        <time datetime="@item.CreatedOn.ToString("O")"></time>
+                    </p>
+                    <p>
+                        @Html.Raw(item.SanitizedContent)
+                        <div>
+                            <button class="btn btn-info btn-lg float-lg-right" onclick="showCommentForm('@item.Id')">Reply</button>
+                            <br />
+                        </div>
+
+                        @{ DisplayComments(item.Id); }
+                    </p>
+                </div>
+            </div>
+        }
+    }
 }
 
 <h1>@this.ViewData["Title"]</h1>
@@ -60,27 +93,8 @@
     </form>
 </div>
 
-@foreach (var item in Model.Comments)
-{
-    <!-- Comments -->
-    <div class="comment-card ml-5">
-        <div class="comment-item text-muted">
-            <p class="mb-2">
-                <strong>
-                    <a href="https://mdbootstrap.com/profile/?id=72880" target="_blank">@item.UserUserName</a>
-                </strong>
-                <time datetime="@item.CreatedOn.ToString("O")"></time>
-            </p>
-            <p>
-                @Html.Raw(item.SanitizedContent)
-                <div>
-                    <button class="btn btn-info btn-sm float-lg-right" onclick="showCommentForm('@item.Id')">Reply</button>
-                    <br />
-                </div>
-            </p>
-        </div>
-    </div>
-}
+@{ DisplayComments(null); }
+
 
 @section Scripts{
     <script>
